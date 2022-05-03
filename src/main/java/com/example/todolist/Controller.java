@@ -11,6 +11,7 @@ import javafx.scene.control.TextArea;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,12 @@ public class Controller {
         toDoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToDoItems>() {
             @Override
             public void changed(ObservableValue<? extends ToDoItems> observableValue, ToDoItems toDoItems, ToDoItems t1) {
-
+                if(t1 != null) {
+                    ToDoItems item = toDoListView.getSelectionModel().getSelectedItem();
+                    itemDetailsTextArea.setText(item.getDetails());
+                    DateTimeFormatter df = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+                    deadlineLabel.setText(df.format(item.getDeadline()));
+                }
             }
         });
 
@@ -59,7 +65,8 @@ public class Controller {
 
         ToDoItems item = toDoListView.getSelectionModel().getSelectedItem();
         itemDetailsTextArea.setText(item.getDetails());
-        deadlineLabel.setText(item.getDeadline().toString());
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+        deadlineLabel.setText(df.format(item.getDeadline()));
 //        System.out.println("The Selected item is: " + item);
 
 //        StringBuilder sb = new StringBuilder(item.getDetails());
@@ -68,7 +75,7 @@ public class Controller {
 //        sb.append(item.getDeadline().toString());
 //        itemDetailsTextArea.setText(sb.toString());
 
-        }
+    }
 
 
 }
