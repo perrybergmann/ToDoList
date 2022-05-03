@@ -1,7 +1,10 @@
 package com.example.todolist;
 
 import com.example.todolist.DataModel.ToDoItems;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
@@ -20,6 +23,9 @@ public class Controller {
     @FXML
     private TextArea itemDetailsTextArea;
 
+    @FXML
+    private Label deadlineLabel;
+
     public void initialize() {
         ToDoItems item1 = new ToDoItems("Mail Birthday card", "Buy a 21st birthday card",
                 LocalDate.of(2022, Month.MAY, 25));
@@ -36,21 +42,31 @@ public class Controller {
         toDoItems.add(item3);
         toDoItems.add(item4);
 
+        toDoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToDoItems>() {
+            @Override
+            public void changed(ObservableValue<? extends ToDoItems> observableValue, ToDoItems toDoItems, ToDoItems t1) {
+
+            }
+        });
+
         toDoListView.getItems().setAll(toDoItems);
         toDoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        toDoListView.getSelectionModel().selectFirst();
     }
 
     @FXML
     public void handleCLickListView() {
 
         ToDoItems item = toDoListView.getSelectionModel().getSelectedItem();
+        itemDetailsTextArea.setText(item.getDetails());
+        deadlineLabel.setText(item.getDeadline().toString());
 //        System.out.println("The Selected item is: " + item);
 
-        StringBuilder sb = new StringBuilder(item.getDetails());
-        sb.append("\n\n\n\n");
-        sb.append("Due: ");
-        sb.append(item.getDeadline().toString());
-        itemDetailsTextArea.setText(sb.toString());
+//        StringBuilder sb = new StringBuilder(item.getDetails());
+//        sb.append("\n\n\n\n");
+//        sb.append("Due: ");
+//        sb.append(item.getDeadline().toString());
+//        itemDetailsTextArea.setText(sb.toString());
 
         }
 
