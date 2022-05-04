@@ -5,11 +5,12 @@ import com.example.todolist.DataModel.ToDoItems;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -25,23 +26,11 @@ public class Controller {
     @FXML
     private Label deadlineLabel;
 
+    @FXML
+    private BorderPane mainBorderPane;
+
     public void initialize() {
-//        ToDoItems item1 = new ToDoItems("Mail Birthday card", "Buy a 21st birthday card",
-//                LocalDate.of(2022, Month.MAY, 25));
-//        ToDoItems item2 = new ToDoItems("Dr Appointment", "See dr about inflamed scrotum",
-//                LocalDate.of(2022, Month.MAY, 18));
-//        ToDoItems item3 = new ToDoItems("Win the lottery", "win the lottery and do nothing",
-//                LocalDate.of(2022, Month.MAY, 20));
-//        ToDoItems item4 = new ToDoItems("Finish design of house", "send out finished designs of home",
-//                LocalDate.of(2022, Month.MAY, 13));
-//
-//        toDoItems = new ArrayList<>();
-//        toDoItems.add(item1);
-//        toDoItems.add(item2);
-//        toDoItems.add(item3);
-//        toDoItems.add(item4);
-//
-//        ToDoData.getInstance().setTodoItems(toDoItems);
+
 
         toDoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToDoItems>() {
             @Override
@@ -61,20 +50,29 @@ public class Controller {
     }
 
     @FXML
+    public void showNewItemDialog() {
+        Dialog<ButtonType> dialog = new Dialog<ButtonType>();
+        dialog.initOwner(mainBorderPane.getScene().getWindow());
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("todoItemDialog.FXML"));
+            dialog.getDialogPane().setContent(root);
+
+        } catch (IOException e) {
+            System.out.println("Couldn't load the dialog");
+            e.printStackTrace();
+            return;
+        }
+
+    }
+
+
+    @FXML
     public void handleCLickListView() {
 
         ToDoItems item = toDoListView.getSelectionModel().getSelectedItem();
         itemDetailsTextArea.setText(item.getDetails());
         DateTimeFormatter df = DateTimeFormatter.ofPattern("MMMM d, yyyy");
         deadlineLabel.setText(df.format(item.getDeadline()));
-//        System.out.println("The Selected item is: " + item);
-
-//        StringBuilder sb = new StringBuilder(item.getDetails());
-//        sb.append("\n\n\n\n");
-//        sb.append("Due: ");
-//        sb.append(item.getDeadline().toString());
-//        itemDetailsTextArea.setText(sb.toString());
-
     }
 
 
