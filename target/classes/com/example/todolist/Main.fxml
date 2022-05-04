@@ -10,20 +10,48 @@
 <!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
 <!--</VBox>-->
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <BorderPane fx:controller="com.example.todolist.Controller"
             xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <items>
+                    <MenuItem text="New..."/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Exit"/>
+                </items>
+            </Menu>
+        </MenuBar>
+    </top>
 
     <left>
-        <ListView fx:id="toDoListView" onMouseClicked="#handleCLickListView">
+        <ListView fx:id="toDoListView">
 
 
         </ListView>
     </left>
     <center>
-        <TextArea fx:id="itemDetailsTextArea"/>
+        <VBox style="-fx-background-color: white">
+            <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS"/>
+            <HBox>
+                <Label text="Due: " style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman bold" size="20"/>
+                    </font>
+                </Label>
+                <Label fx:id="deadlineLabel" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman bold" size="20"/>
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
+
     </center>
 
 </BorderPane>

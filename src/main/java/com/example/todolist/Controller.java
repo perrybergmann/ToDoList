@@ -1,5 +1,6 @@
 package com.example.todolist;
 
+import com.example.todolist.DataModel.ToDoData;
 import com.example.todolist.DataModel.ToDoItems;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,10 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -28,20 +26,22 @@ public class Controller {
     private Label deadlineLabel;
 
     public void initialize() {
-        ToDoItems item1 = new ToDoItems("Mail Birthday card", "Buy a 21st birthday card",
-                LocalDate.of(2022, Month.MAY, 25));
-        ToDoItems item2 = new ToDoItems("Dr Appointment", "See dr about inflamed scrotum",
-                LocalDate.of(2022, Month.MAY, 18));
-        ToDoItems item3 = new ToDoItems("Win the lottery", "win the lottery and do nothing",
-                LocalDate.of(2022, Month.MAY, 20));
-        ToDoItems item4 = new ToDoItems("Finish design of house", "send out finished designs of home",
-                LocalDate.of(2022, Month.MAY, 13));
-
-        toDoItems = new ArrayList<>();
-        toDoItems.add(item1);
-        toDoItems.add(item2);
-        toDoItems.add(item3);
-        toDoItems.add(item4);
+//        ToDoItems item1 = new ToDoItems("Mail Birthday card", "Buy a 21st birthday card",
+//                LocalDate.of(2022, Month.MAY, 25));
+//        ToDoItems item2 = new ToDoItems("Dr Appointment", "See dr about inflamed scrotum",
+//                LocalDate.of(2022, Month.MAY, 18));
+//        ToDoItems item3 = new ToDoItems("Win the lottery", "win the lottery and do nothing",
+//                LocalDate.of(2022, Month.MAY, 20));
+//        ToDoItems item4 = new ToDoItems("Finish design of house", "send out finished designs of home",
+//                LocalDate.of(2022, Month.MAY, 13));
+//
+//        toDoItems = new ArrayList<>();
+//        toDoItems.add(item1);
+//        toDoItems.add(item2);
+//        toDoItems.add(item3);
+//        toDoItems.add(item4);
+//
+//        ToDoData.getInstance().setTodoItems(toDoItems);
 
         toDoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToDoItems>() {
             @Override
@@ -55,7 +55,7 @@ public class Controller {
             }
         });
 
-        toDoListView.getItems().setAll(toDoItems);
+        toDoListView.getItems().setAll(ToDoData.getInstance().getTodoItems());
         toDoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         toDoListView.getSelectionModel().selectFirst();
     }

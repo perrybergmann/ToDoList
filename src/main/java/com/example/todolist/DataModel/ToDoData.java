@@ -2,7 +2,6 @@ package com.example.todolist.DataModel;
 
 import javafx.collections.FXCollections;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -33,9 +32,9 @@ public class ToDoData {
         return todoItems;
     }
 
-    public void setTodoItems(List<ToDoItems> todoItems) {
-        this.todoItems = todoItems;
-    }
+//    public void setTodoItems(List<ToDoItems> todoItems) {
+//        this.todoItems = todoItems;
+//    }
 
     public void loadToDoItems() throws IOException {
         todoItems = FXCollections.observableArrayList();
