@@ -15,13 +15,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<BorderPane fx:controller="com.example.todolist.Controller"
+<BorderPane fx:id="mainBorderPane" fx:controller="com.example.todolist.Controller"
             xmlns:fx="http://javafx.com/fxml">
     <top>
         <MenuBar>
             <Menu text="File">
                 <items>
-                    <MenuItem text="New..."/>
+                    <MenuItem text="New..." onAction="#showNewItemDialog"/>
                     <SeparatorMenuItem/>
                     <MenuItem text="Exit"/>
                 </items>

@@ -32,9 +32,12 @@ public class ToDoData {
         return todoItems;
     }
 
-//    public void setTodoItems(List<ToDoItems> todoItems) {
-//        this.todoItems = todoItems;
-//    }
+
+
+    public void addTodoItem(ToDoItems item) {
+        todoItems.add(item);
+    }
+
 
     public void loadToDoItems() throws IOException {
         todoItems = FXCollections.observableArrayList();
@@ -85,7 +88,7 @@ public class ToDoData {
                 bw.close();
             }
         }
-
     }
+
 
 }
