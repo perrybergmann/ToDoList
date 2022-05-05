@@ -39,8 +39,8 @@ public class ToDoItems {
 
     }
 
-    @Override
-    public String toString() {
-        return shortDescritption;
-    }
+//    @Override
+//    public String toString() {
+//        return shortDescritption;
+//    }
 }

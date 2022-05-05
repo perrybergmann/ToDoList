@@ -1,6 +1,7 @@
 package com.example.todolist.DataModel;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,13 +12,12 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
-import java.util.List;
 
 public class ToDoData {
     private static ToDoData instance = new ToDoData();
     private static String filename = "TodoListItems.txt";
 
-    private List<ToDoItems> todoItems;
+    private ObservableList<ToDoItems> todoItems;
     private DateTimeFormatter formatter;
 
     public static ToDoData getInstance() {
@@ -28,7 +28,7 @@ public class ToDoData {
         formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
-    public List<ToDoItems> getTodoItems() {
+    public ObservableList<ToDoItems> getTodoItems() {
         return todoItems;
     }
 
